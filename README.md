@@ -12,13 +12,21 @@
 Потенциальные фреймворки для преобразования голоса в текст:
 
 Vosk - https://github.com/alphacep/vosk-api, https://alphacephei.com/vosk/
+
 CMUSphinxs - https://cmusphinx.github.io
+
 SpeechRecognition - https://github.com/Uberi/speech_recognition
+
 Pocketsphinx Python - https://pypi.org/project/pocketsphinx/
+
 Julius - https://github.com/julius-speech/julius
+
 Pyjulius3 - https://github.com/bachmmmar/pyjulius
+
 VoxForge - http://www.voxforge.org (http://www.voxforge.org/)
+
 Pywit - https://github.com/wit-ai/pywit
+
 Apiai-python-client - https://github.com/nivcaner/apiai-python-client
 
 Возможные библиотеки и плагины JS:
