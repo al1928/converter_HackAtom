@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InformOutComponent} from '../inform-out/inform-out.component';
+import {FileNameComponent} from '../file-name/file-name.component';
 
 @Component({
   selector: 'app-loading-area',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingAreaComponent implements OnInit {
   public isDragenter: boolean;
+  public fileNameComponent: FileNameComponent;
 
-  constructor() {
+  constructor(private informOutComponent: InformOutComponent) {
     this.isDragenter = false;
+    this.fileNameComponent = new FileNameComponent();
   }
 
   ngOnInit(): void {
@@ -41,6 +45,8 @@ export class LoadingAreaComponent implements OnInit {
   }
 
   loadingFiles(files: FileList): void {
-    console.log(files[0].name);
+    const name = files[0].name;
+    console.log(name);
+    this.informOutComponent.addComponent(name);
   }
 }

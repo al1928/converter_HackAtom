@@ -7,20 +7,25 @@ import { LoadingAreaComponent } from './loading-area/loading-area.component';
 import { FileSelectionComponent } from './file-selection/file-selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { InformOutComponent } from './inform-out/inform-out.component';
+import { FileNameComponent } from './file-name/file-name.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingAreaComponent,
-    FileSelectionComponent
+    FileSelectionComponent,
+    InformOutComponent,
+    FileNameComponent
   ],
+  entryComponents: [FileNameComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatButtonModule
     ],
-  providers: [],
+  providers: [InformOutComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
