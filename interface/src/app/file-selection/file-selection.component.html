@@ -1,0 +1,2 @@
+<button #upload mat-raised-button color="primary" (click)="file.click()" class="file-selection-style">Выбрать файл</button>
+<input  #file type="file" style="display: none;" (change)="importFile($event)">

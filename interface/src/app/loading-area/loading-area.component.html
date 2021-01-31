@@ -1,0 +1,9 @@
+<span class="span-or">или</span>
+<div class="area"
+     (drop)="onDrop($event)"
+     (dragenter)="dragenter($event)"
+     (dragover)="dragover($event)"
+     (dragleave)="dragleave($event)"
+     [ngClass]="{ 'area-on' : isDragenter}">
+  просто перетащите
+</div>
