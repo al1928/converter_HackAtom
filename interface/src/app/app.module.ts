@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingAreaComponent } from './loading-area/loading-area.component';
-import { FileSelectionComponent } from './file-selection/file-selection.component';
+import { LoadingAreaComponent } from './components/loading-area/loading-area.component';
+import { FileSelectionComponent } from './components/file-selection/file-selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import { InformOutComponent } from './inform-out/inform-out.component';
-import { FileNameComponent } from './file-name/file-name.component';
+import { InformOutComponent } from './components/inform-out/inform-out.component';
+import { FileNameComponent } from './components/file-name/file-name.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,18 @@ import { FileNameComponent } from './file-name/file-name.component';
     InformOutComponent,
     FileNameComponent
   ],
-  entryComponents: [FileNameComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    DragDropModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   providers: [
-    InformOutComponent
+    InformOutComponent,
+    FileNameComponent
   ],
   bootstrap: [AppComponent]
 })

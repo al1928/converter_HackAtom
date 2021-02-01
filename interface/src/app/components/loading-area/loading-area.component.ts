@@ -9,11 +9,10 @@ import {FileNameComponent} from '../file-name/file-name.component';
 })
 export class LoadingAreaComponent implements OnInit {
   public isDragenter: boolean;
-  public fileNameComponent: FileNameComponent;
+  private fileArray: File[] = [];
 
-  constructor(private informOutComponent: InformOutComponent) {
+  constructor(private fileName: FileNameComponent, private informOut: InformOutComponent) {
     this.isDragenter = false;
-    this.fileNameComponent = new FileNameComponent();
   }
 
   ngOnInit(): void {
@@ -47,6 +46,12 @@ export class LoadingAreaComponent implements OnInit {
   loadingFiles(files: FileList): void {
     const name = files[0].name;
     console.log(name);
-    this.informOutComponent.addComponent(name);
+    this.fileArray = Array.from(files);
+    this.informOut.deleteComponent();
+    this.informOut.addComponent(this.fileArray);
+  }
+
+  setFiles(data: File[]): void {
+    this.fileArray = data;
   }
 }

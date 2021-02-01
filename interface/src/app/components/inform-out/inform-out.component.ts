@@ -1,4 +1,10 @@
-import {Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild, Type, ViewContainerRef} from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewContainerRef,
+  ComponentRef
+} from '@angular/core';
 import {FileNameComponent} from '../file-name/file-name.component';
 
 @Component({
@@ -7,6 +13,7 @@ import {FileNameComponent} from '../file-name/file-name.component';
   styleUrls: ['./inform-out.component.css']
 })
 export class InformOutComponent implements OnInit{
+  componentRef!: ComponentRef<FileNameComponent>;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -16,11 +23,16 @@ export class InformOutComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  addComponent(name: string): void {
-
+  addComponent(files: File[]): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
-    const componentRef = this.viewContainerRef.createComponent(componentFactory);
-    componentRef.instance.name = name;
+    this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+    this.componentRef.instance.setFiles(files);
+  }
+
+  deleteComponent(): void {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
   }
 
 }
