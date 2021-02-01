@@ -4,3 +4,12 @@
   margin-top: 100px !important;
   height: 50px;
 }
+
+h1 {
+  position: relative;
+}
+
+p {
+  color: dimgray;
+  margin-top: 50px;
+}

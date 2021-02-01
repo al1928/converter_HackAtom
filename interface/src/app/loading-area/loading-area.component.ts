@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InformOutComponent} from '../inform-out/inform-out.component';
 import {FileNameComponent} from '../file-name/file-name.component';
 

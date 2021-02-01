@@ -25,7 +25,9 @@ import { FileNameComponent } from './file-name/file-name.component';
         BrowserAnimationsModule,
         MatButtonModule
     ],
-  providers: [InformOutComponent],
+  providers: [
+    InformOutComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
