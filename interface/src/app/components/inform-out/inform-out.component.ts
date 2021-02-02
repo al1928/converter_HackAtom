@@ -14,6 +14,7 @@ import {FileNameComponent} from '../file-name/file-name.component';
 })
 export class InformOutComponent implements OnInit{
   componentRef!: ComponentRef<FileNameComponent>;
+  data: File[] = [];
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -24,6 +25,14 @@ export class InformOutComponent implements OnInit{
   }
 
   addComponent(files: File[]): void {
+    let i = 0;
+    let j = this.data.length;
+    const size = files.length;
+    while (i < size){
+      this.data[j] = files[i];
+      i++;
+      j++;
+    }
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
     this.componentRef = this.viewContainerRef.createComponent(componentFactory);
     this.componentRef.instance.setFiles(files);

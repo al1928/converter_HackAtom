@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {Icons} from '../../models/icons';
+import {InformOutComponent} from '../inform-out/inform-out.component';
 
 @Component({
   selector: 'app-file-name',
@@ -12,7 +14,8 @@ export class FileNameComponent {
   private differenceBetweenBytesAndMegabytes = 1048576;
   private differenceBetweenBytesAndKilobytes = 1024;
 
-  constructor() {
+  constructor(
+    private icons: Icons) {
     this.isArrayEmpty = true;
   }
 
@@ -22,12 +25,8 @@ export class FileNameComponent {
 
   setFiles(files: File[]): void {
     this.isArrayEmpty = false;
-    let i = 0;
-    const size = files.length;
-    while (i < size){
-      this.files[i] = files[i];
-      i++;
-    }
+    this.files = files;
+    console.log(this.files);
   }
 
   deleteFiles(file: File): void{
@@ -50,5 +49,9 @@ export class FileNameComponent {
     } else {
       return size + ' Bytes';
     }
+  }
+
+  getIcon(name: string): string {
+    return this.icons.data.mp3;
   }
 }

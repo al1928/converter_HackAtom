@@ -1,4 +1,9 @@
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let file of files" cdkDrag>{{file.name}} {{calculate(file.size)}}</div>
+  <div class="example-box" *ngFor="let file of files" cdkDrag>
+    <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
+    <p>{{file.name}}</p>
+    <p>{{calculate(file.size)}}</p>
+  </div>
 </div>
+
 

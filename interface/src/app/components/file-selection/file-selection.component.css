@@ -17,4 +17,7 @@ p {
 .file-selection-div-style {
   position: relative;
   z-index: 50;
+  max-width: 400px;
+  margin: auto;
 }
+

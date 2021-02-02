@@ -15,6 +15,7 @@
 
 .example-box {
   padding: 20px 10px;
+  max-height: 70px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -53,3 +54,6 @@
 .drop-list-show {
   display: none;
 }
+
+p { margin-top: 9px}
+img { margin-top: -6px}

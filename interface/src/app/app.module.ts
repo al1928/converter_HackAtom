@@ -11,6 +11,7 @@ import { InformOutComponent } from './components/inform-out/inform-out.component
 import { FileNameComponent } from './components/file-name/file-name.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Icons} from './models/icons';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   providers: [
     InformOutComponent,
     FileNameComponent,
-    FileSelectionComponent
+    FileSelectionComponent,
+    Icons
   ],
   bootstrap: [AppComponent]
 })
