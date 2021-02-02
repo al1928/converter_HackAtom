@@ -1,17 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97ec1c43-d231-4544-ad18-76202fe3f3c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/vosk-api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/cffi/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/__init__.py" afterDir="false" />
+    <list default="true" id="97ec1c43-d231-4544-ad18-76202fe3f3c5" name="Default Changelist" comment="add ru and en small model (нужно добрать другие/улучшить эти)">
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/LongWelcome.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/Phone_ARU_ON.wav" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vosk-api/python/example/convert-test.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vosk-api/python/example/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/test/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/AUTHORS.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/am/final.mdl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/am/tree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/conf/mfcc.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/conf/model.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/Gr.fst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/HCLr.fst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/disambig_tid.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/align_lexicon.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/align_lexicon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/disambig.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/disambig.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/optional_silence.csl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/optional_silence.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/optional_silence.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/silence.csl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/word_boundary.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/phones/word_boundary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/graph/words.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/final.dubm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/final.ie" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/final.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/global_cmvn.stats" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/online_cmvn.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_en/ivector/splice.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/am/final.mdl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/conf/mfcc.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/conf/model.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/graph/Gr.fst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/graph/HCLr.fst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/graph/disambig_tid.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/graph/phones/word_boundary.int" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/final.dubm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/final.ie" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/final.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/global_cmvn.stats" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/online_cmvn.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/model_ru/ivector/splice.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/test.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpeechRecognition_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeechRecognition_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface/package-lock.json" afterDir="false" />
     </list>
@@ -49,6 +86,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/vosk-api/python/example" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -201,6 +239,14 @@
       <workItem from="1612027576668" duration="48000" />
       <workItem from="1612125458308" duration="71000" />
     </task>
+    <task id="LOCAL-00001" summary="add vosk-api (default)">
+      <created>1612280089201</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612280089201</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,5 +264,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add vosk-api (default)" />
+    <MESSAGE value="add ru and en small model (нужно добрать другие/улучшить эти)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ru and en small model (нужно добрать другие/улучшить эти)" />
   </component>
 </project>
