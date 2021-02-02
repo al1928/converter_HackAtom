@@ -8,18 +8,30 @@ import {Icons} from '../../models/icons';
   styleUrls: ['./file-name.component.css']
 })
 export class FileNameComponent{
+  progressStatus = {
+    sent : 1,
+    processing : 2,
+    loaded: 3
+  };
+
   isArrayEmpty: boolean;
   files: File[] = [];
   indexDelete: number;
   isEmpty: boolean;
   private differenceBetweenBytesAndMegabytes = 1048576;
   private differenceBetweenBytesAndKilobytes = 1024;
+  statusDownload: number;
+  index: number;
+
+  data: Map<File, number> = new Map<File, number>();
 
   constructor(
     private icons: Icons) {
     this.isArrayEmpty = true;
     this.indexDelete = -1;
+    this.index = -1;
     this.isEmpty = true;
+    this.statusDownload = this.progressStatus.sent;
   }
 
   drop(event: CdkDragDrop<string[]>): void {
@@ -29,6 +41,9 @@ export class FileNameComponent{
   setFiles(files: File[]): void {
     this.isArrayEmpty = false;
     this.files = files;
+
+    files.map(p =>  this.data.set(p, this.progressStatus.sent));
+
     console.log(this.files);
   }
 
@@ -68,7 +83,12 @@ export class FileNameComponent{
       this.isEmpty = false;
     }
   }
-  // {
-  //   this.fileExchange.deleteFile(i);
-  // }
+
+  onDownload(file: File): void {
+    this.data.set(file, this.progressStatus.processing);
+    setTimeout(() => {
+      this.data.set(file, this.progressStatus.loaded);
+    }, 3000);
+  }
 }
+

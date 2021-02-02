@@ -7,6 +7,7 @@ import { LoadingAreaComponent } from './components/loading-area/loading-area.com
 import { FileSelectionComponent } from './components/file-selection/file-selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { InformOutComponent } from './components/inform-out/inform-out.component';
 import { FileNameComponent } from './components/file-name/file-name.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -28,7 +29,8 @@ import {Icons} from './models/icons';
     MatButtonModule,
     DragDropModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ],
   providers: [
     InformOutComponent,

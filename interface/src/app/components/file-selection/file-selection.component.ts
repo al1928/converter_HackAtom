@@ -30,6 +30,7 @@ export class FileSelectionComponent implements OnInit {
     this.fileArray = Array.from(files);
     this.informOut.deleteComponent();
     this.informOut.addComponent(this.fileArray);
+    console.log(this.fileArray);
   }
 
   setFiles(data: File[]): void {

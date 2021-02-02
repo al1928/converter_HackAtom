@@ -74,6 +74,32 @@ img { margin-top: -6px}
 }
 
 .clear-style:hover {
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.dl-style {
+  color: cornflowerblue;
+  font-weight: 100;
+  position: absolute;
+  right: 40px;
+  font-size: 22px;
+}
+
+.dl-style:hover{
   cursor: pointer;
   font-weight: 900;
+}
+
+.progress-bar-style{
+  max-width: 100px;
+}
+
+.loaded {
+  color: darkseagreen;
+}
+
+.dl-off {
+  pointer-events: none;
+  color: darkgray;
 }
