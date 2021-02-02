@@ -33,9 +33,13 @@ export class InformOutComponent implements OnInit{
       i++;
       j++;
     }
+    this.createComponent();
+  }
+
+  createComponent(): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
     this.componentRef = this.viewContainerRef.createComponent(componentFactory);
-    this.componentRef.instance.setFiles(files);
+    this.componentRef.instance.setFiles(this.data);
   }
 
   deleteComponent(): void {
