@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InformOutComponent} from '../inform-out/inform-out.component';
 
 @Component({
   selector: 'app-file-selection',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-selection.component.css']
 })
 export class FileSelectionComponent implements OnInit {
+  private fileArray: File[] = [];
 
-  constructor() {
+  constructor(private informOut: InformOutComponent) {
   }
 
   ngOnInit(): void {
@@ -18,7 +20,19 @@ export class FileSelectionComponent implements OnInit {
       console.log('No file selected!');
       return;
     }
-    const file: File = $event.target.files[0];
-    console.log(file.name);
+    const files: FileList = $event.target.files;
+    this.loadingFiles(files);
+  }
+
+  loadingFiles(files: FileList): void {
+    const name = files[0].name;
+    console.log(name);
+    this.fileArray = Array.from(files);
+    this.informOut.deleteComponent();
+    this.informOut.addComponent(this.fileArray);
+  }
+
+  setFiles(data: File[]): void {
+    this.fileArray = data;
   }
 }

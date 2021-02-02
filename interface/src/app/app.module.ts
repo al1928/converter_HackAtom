@@ -31,7 +31,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   providers: [
     InformOutComponent,
-    FileNameComponent
+    FileNameComponent,
+    FileSelectionComponent
   ],
   bootstrap: [AppComponent]
 })

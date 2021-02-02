@@ -13,3 +13,8 @@ p {
   color: dimgray;
   margin-top: 50px;
 }
+
+.file-selection-div-style {
+  position: relative;
+  z-index: 50;
+}

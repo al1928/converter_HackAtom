@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-file-name',
@@ -10,11 +9,11 @@ import {Observable, of} from 'rxjs';
 export class FileNameComponent {
   isArrayEmpty: boolean;
   files: File[] = [];
-  filesObservable: Observable<File[]>;
+  private differenceBetweenBytesAndMegabytes = 1048576;
+  private differenceBetweenBytesAndKilobytes = 1024;
 
   constructor() {
     this.isArrayEmpty = true;
-    this.filesObservable = of(this.files);
   }
 
   drop(event: CdkDragDrop<string[]>): void {
@@ -29,9 +28,6 @@ export class FileNameComponent {
       this.files[i] = files[i];
       i++;
     }
-    this.filesObservable = of(this.files);
-    console.log(this.files[0].name);
-    this.filesObservable.subscribe(p => console.log(p));
   }
 
   deleteFiles(file: File): void{
@@ -41,6 +37,18 @@ export class FileNameComponent {
     }
     if (this.files.length === 0){
       this.isArrayEmpty = true;
+    }
+  }
+
+  calculate(size: number): string {
+    if (size > this.differenceBetweenBytesAndMegabytes) {
+      const sizeMB = size / this.differenceBetweenBytesAndMegabytes;
+      return parseFloat(sizeMB.toFixed(2)) + ' MBytes';
+    } else if (size > this.differenceBetweenBytesAndKilobytes) {
+      const sizeKB = size / this.differenceBetweenBytesAndKilobytes;
+      return parseFloat(sizeKB.toFixed(2)) + ' KBytes';
+    } else {
+      return size + ' Bytes';
     }
   }
 }

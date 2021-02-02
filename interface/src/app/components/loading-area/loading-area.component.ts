@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {InformOutComponent} from '../inform-out/inform-out.component';
-import {FileNameComponent} from '../file-name/file-name.component';
+import {FileSelectionComponent} from '../file-selection/file-selection.component';
 
 @Component({
   selector: 'app-loading-area',
@@ -9,9 +8,8 @@ import {FileNameComponent} from '../file-name/file-name.component';
 })
 export class LoadingAreaComponent implements OnInit {
   public isDragenter: boolean;
-  private fileArray: File[] = [];
 
-  constructor(private fileName: FileNameComponent, private informOut: InformOutComponent) {
+  constructor(private fileSelection: FileSelectionComponent) {
     this.isDragenter = false;
   }
 
@@ -24,7 +22,7 @@ export class LoadingAreaComponent implements OnInit {
     $event.stopPropagation();
     if ($event.dataTransfer.files) {
       const files: FileList = $event.dataTransfer.files;
-      this.loadingFiles(files);
+      this.fileSelection.loadingFiles(files);
     }
   }
 
@@ -41,17 +39,5 @@ export class LoadingAreaComponent implements OnInit {
   dragleave($event: any): void {
     this.isDragenter = false;
     $event.preventDefault();
-  }
-
-  loadingFiles(files: FileList): void {
-    const name = files[0].name;
-    console.log(name);
-    this.fileArray = Array.from(files);
-    this.informOut.deleteComponent();
-    this.informOut.addComponent(this.fileArray);
-  }
-
-  setFiles(data: File[]): void {
-    this.fileArray = data;
   }
 }

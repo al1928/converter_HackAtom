@@ -1,3 +1,4 @@
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let s of filesObservable | async" cdkDrag>{{s.name}}</div>
+  <div class="example-box" *ngFor="let file of files" cdkDrag>{{file.name}} {{calculate(file.size)}}</div>
 </div>
+
