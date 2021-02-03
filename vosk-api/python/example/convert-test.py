@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-import wave
-
-import pydub
-from vosk import Model, KaldiRecognizer
 import json
 import os
 import time
+import wave
+import pydub
+
+from vosk import Model, KaldiRecognizer
+from pydub import AudioSegment
 
 
 def get_model(lang="ru") -> str:
@@ -19,7 +20,14 @@ def get_model(lang="ru") -> str:
     return model
 
 
-def convert_wav_to_text(filename) -> str:
+def get_file_format(path: str) -> str:
+    return path.split(".")[-1]
+
+
+def convert_wav_to_text(model, filename) -> str:
+    # извлекает текст из файла формата .wav
+    if get_file_format(filename) != "wav":
+        filename = convert_mp3_to_wav(filename)
     wf = wave.open(filename, "rb")
     # wf.read(44) # skip header
     # You can also specify the possible word list
@@ -32,7 +40,6 @@ def convert_wav_to_text(filename) -> str:
         if rec.AcceptWaveform(data):
             res = json.loads(rec.Result())
             print(res['text'])
-
     res = json.loads(rec.FinalResult())
     return res['text']
 
@@ -43,22 +50,28 @@ def timer(func):
     print("Time: ", time.time() - start_time)
 
 
-# Large vocabulary free form recognition
-model = get_model("ru")
+def convert_mp3_to_wav(mp3_filename: str) -> str:
+    # конвертирует mp3 в wav, сохраняет полученный файл в папку
+    # ПОДУМАТЬ НАД ОЧИЩЕНИЕМ ПАПКИ (или полное ее удаление)
+    sound = AudioSegment.from_mp3(mp3_filename)
+    folder_name = "audiocash"
+    if not os.path.isdir(folder_name):
+        os.mkdir(folder_name)
+    wav_filename = mp3_filename.split(".")[0]
+    # path_wav_file = f"{folder_name}/{wav_filename}.wav"
+    path_wav_file = os.path.join(folder_name, f"{wav_filename}.wav")
+    sound.export(path_wav_file, format="wav")
+    return path_wav_file
+
+model = get_model("en")
 path_ru_file = "Phone_ARU_ON.wav"
 path_en_file = "LongWelcome.wav"
-timer(convert_wav_to_text(path_ru_file))
 
-# from os import path
-# from pydub import AudioSegment
-# pydub.AudioSegment.ffmpeg = r"C:\Users\Lenovo\Desktop\ffmpeg-4.3.1-win64-static\bin\ffmpeg.exe"
-# # files
-# src = "1.mp3"
-# dst = "qw.wav"
-#
-# # convert wav to mp3
-# sound = AudioSegment.from_mp3(src)
-# sound.export(dst, format="wav")
+mp3_filename1 = "1.mp3"
+mp3_filename2 = "text_1_full.mp3"
+
+timer(convert_wav_to_text(model, mp3_filename2))
+
 
 
 
