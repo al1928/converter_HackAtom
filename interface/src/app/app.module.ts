@@ -3,14 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingAreaComponent } from './components/loading-area/loading-area.component';
 import { FileSelectionComponent } from './components/file-selection/file-selection.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { InformOutComponent } from './components/inform-out/inform-out.component';
-import { FileNameComponent } from './components/file-name/file-name.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Icons} from './models/icons';
@@ -20,19 +17,19 @@ import { ConverterComponent } from './components/converter/converter.component';
 import { AddFilesComponent } from './components/add-files/add-files.component';
 import {ProgressStatus} from './models/progress-status';
 import { CleaningComponent } from './components/cleaning/cleaning.component';
+import { HintComponent } from './components/hint/hint.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingAreaComponent,
     FileSelectionComponent,
-    InformOutComponent,
-    FileNameComponent,
     HeaderComponent,
     FooterComponent,
     ConverterComponent,
     AddFilesComponent,
-    CleaningComponent
+    CleaningComponent,
+    HintComponent
   ],
   imports: [
     BrowserModule,
@@ -43,11 +40,10 @@ import { CleaningComponent } from './components/cleaning/cleaning.component';
     ReactiveFormsModule,
     FormsModule,
     MatProgressBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatBadgeModule
   ],
   providers: [
-    InformOutComponent,
-    FileNameComponent,
     FileSelectionComponent,
     Icons,
     ProgressStatus

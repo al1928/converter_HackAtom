@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileNameComponent } from './file-name.component';
+import { HintComponent } from './hint.component';
 
-describe('FileNameComponent', () => {
-  let component: FileNameComponent;
-  let fixture: ComponentFixture<FileNameComponent>;
+describe('HintComponent', () => {
+  let component: HintComponent;
+  let fixture: ComponentFixture<HintComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FileNameComponent ]
+      declarations: [ HintComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileNameComponent);
+    fixture = TestBed.createComponent(HintComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
