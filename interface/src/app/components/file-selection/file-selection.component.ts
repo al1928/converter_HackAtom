@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {InformOutComponent} from '../inform-out/inform-out.component';
+import {Component, ComponentRef, OnInit} from '@angular/core';
+import {FileNameComponent} from '../file-name/file-name.component';
 
 @Component({
   selector: 'app-file-selection',
@@ -7,10 +7,11 @@ import {InformOutComponent} from '../inform-out/inform-out.component';
   styleUrls: ['./file-selection.component.css']
 })
 export class FileSelectionComponent implements OnInit {
-  private fileArray: File[] = [];
+  fileArray: File[] = [];
   isDisplay: boolean;
+  componentRefFile!: ComponentRef<FileNameComponent>;
 
-  constructor(private informOut: InformOutComponent) {
+  constructor() {
     this.isDisplay = true;
   }
 
@@ -33,12 +34,28 @@ export class FileSelectionComponent implements OnInit {
     const name = files[0].name;
     console.log(name);
     this.fileArray = Array.from(files);
-    this.informOut.deleteComponent();
-    this.informOut.addComponent(this.fileArray);
+    // this.deleteComponent();
+    // this.createComponent();
     console.log(this.fileArray);
   }
 
+  // createComponent(): void {
+  //   const componentFactoryFile = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
+  //   this.componentRefFile = this.viewContainerRef.createComponent(componentFactoryFile);
+  //   this.componentRefFile.instance.setFiles(this.fileArray);
+  // }
+  //
+  // deleteComponent(): void {
+  //   if (this.componentRefFile) {
+  //     this.componentRefFile.destroy();
+  //   }
+  // }
+
   setFiles(data: File[]): void {
     this.fileArray = data;
+  }
+
+  setIsDisplay(is: boolean): void{
+    this.isDisplay = is;
   }
 }

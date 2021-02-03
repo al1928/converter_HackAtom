@@ -1,11 +1,14 @@
-<div class="file-selection-div-style">
-  <h1 >Сервис распознования речи</h1>
-  <button #upload mat-raised-button
-          (click)="file.click()"
-          class="file-selection-style"
-          *ngIf="this.isDisplay">
-    Выберите файл</button>
-  <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
-  <p *ngIf="this.isDisplay">или просто перетащите</p>
+<div>
+  <div class="file-selection-div-style">
+    <h1 >Сервис распознования речи</h1>
+    <button #upload mat-raised-button
+            (click)="file.click()"
+            class="file-selection-style"
+            *ngIf="this.isDisplay">
+      Выберите файл</button>
+    <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
+    <p *ngIf="this.isDisplay">или просто перетащите</p>
+  </div>
+  <app-file-name *ngIf="!this.isDisplay" [files]="this.fileArray" (isDisplay)="setIsDisplay($event)"></app-file-name>
 </div>
 

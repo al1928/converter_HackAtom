@@ -18,6 +18,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ConverterComponent } from './components/converter/converter.component';
 import { AddFilesComponent } from './components/add-files/add-files.component';
+import {ProgressStatus} from './models/progress-status';
+import { CleaningComponent } from './components/cleaning/cleaning.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { AddFilesComponent } from './components/add-files/add-files.component';
     HeaderComponent,
     FooterComponent,
     ConverterComponent,
-    AddFilesComponent
+    AddFilesComponent,
+    CleaningComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { AddFilesComponent } from './components/add-files/add-files.component';
     InformOutComponent,
     FileNameComponent,
     FileSelectionComponent,
-    Icons
+    Icons,
+    ProgressStatus
   ],
   bootstrap: [AppComponent]
 })

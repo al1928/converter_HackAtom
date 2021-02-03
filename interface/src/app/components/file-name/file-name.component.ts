@@ -1,36 +1,30 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Icons} from '../../models/icons';
+import {ProgressStatus} from '../../models/progress-status';
 
 @Component({
   selector: 'app-file-name',
   templateUrl: './file-name.component.html',
   styleUrls: ['./file-name.component.css']
 })
-export class FileNameComponent{
-  progressStatus = {
-    sent : 1,
-    processing : 2,
-    loaded: 3
-  };
+export class FileNameComponent implements OnChanges{
 
-  isArrayEmpty: boolean;
-  files: File[] = [];
   indexDelete: number;
-  isEmpty: boolean;
   private differenceBetweenBytesAndMegabytes = 1048576;
   private differenceBetweenBytesAndKilobytes = 1024;
   statusDownload: number;
   index: number;
 
+  @Output() isDisplay = new EventEmitter<boolean>();
+  @Input() files!: File[];
   data: Map<File, number> = new Map<File, number>();
 
   constructor(
+    public progressStatus: ProgressStatus,
     private icons: Icons) {
-    this.isArrayEmpty = true;
     this.indexDelete = -1;
     this.index = -1;
-    this.isEmpty = true;
     this.statusDownload = this.progressStatus.sent;
   }
 
@@ -38,22 +32,12 @@ export class FileNameComponent{
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
-  setFiles(files: File[]): void {
-    this.isArrayEmpty = false;
-    this.files = files;
-
-    files.map(p =>  this.data.set(p, this.progressStatus.sent));
-
+  deleteFiles(): void{
+    this.data.clear();
+    this.files.splice(0, this.files.length);
     console.log(this.files);
-  }
-
-  deleteFiles(file: File): void{
-    const index = this.files.indexOf(file, 0);
-    if (index > -1) {
-      this.files.splice(index, 1);
-    }
     if (this.files.length === 0){
-      this.isArrayEmpty = true;
+      this.isDisplay.emit(true);
     }
   }
 
@@ -80,7 +64,7 @@ export class FileNameComponent{
       this.files.splice(index, 1);
     }
     if (this.files.length <= 0 ){
-      this.isEmpty = false;
+      this.isDisplay.emit(true);
     }
   }
 
@@ -95,6 +79,10 @@ export class FileNameComponent{
 
   startConverter(): void {
     this.files.map(p => this.onDownload(p));
+  }
+
+  ngOnChanges(): void {
+      this.files.map(p =>  this.data.set(p, this.progressStatus.sent));
   }
 }
 

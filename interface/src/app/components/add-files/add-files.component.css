@@ -2,18 +2,15 @@
   background-color: rgb(89,159,211);
   color: white;
   width: 250px;
-  height: 65px;
+  height: 55px;
   position: absolute;
   left: 0;
   cursor: pointer;
-  border-right-color: rgb(108, 167, 212);
-  border-right-style: solid;
-  border-right-width: 3px;
 }
 
 p {
-  font-size: 20px;
-  margin-top: 22px;
+  font-size: 17px;
+  margin-top: 15px;
 }
 
 .button-add-files:hover:active {

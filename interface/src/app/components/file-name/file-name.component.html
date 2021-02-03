@@ -1,5 +1,5 @@
 <div>
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="isEmpty">
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let file of files; let i = index" cdkDrag [ngStyle]="{ 'display: none;' : i == indexDelete }">
       <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
       <p class="p-name">{{file.name}}</p>
@@ -12,7 +12,7 @@
       <span class="material-icons clear-style" (click)="onClear(i)">clear</span>
     </div>
   </div>
-  <app-footer *ngIf="this.isEmpty"></app-footer>
+  <app-footer></app-footer>
   <br>
   <br>
   <br>

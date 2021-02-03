@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {InformOutComponent} from '../inform-out/inform-out.component';
+import {FileNameComponent} from '../file-name/file-name.component';
 
 @Component({
   selector: 'app-converter',
@@ -8,12 +8,12 @@ import {InformOutComponent} from '../inform-out/inform-out.component';
 })
 export class ConverterComponent implements OnInit {
 
-  constructor(private informOut: InformOutComponent) { }
+  constructor(private fileName: FileNameComponent) { }
 
   ngOnInit(): void {
   }
 
   onConverter(): void {
-    this.informOut.startConverter();
+    this.fileName.startConverter();
   }
 }

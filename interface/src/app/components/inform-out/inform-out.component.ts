@@ -24,29 +24,29 @@ export class InformOutComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  addComponent(files: File[]): void {
-    let i = 0;
-    let j = this.data.length;
-    const size = files.length;
-    while (i < size){
-      this.data[j] = files[i];
-      i++;
-      j++;
-    }
-    this.createComponent();
-  }
-
-  createComponent(): void {
-    const componentFactoryFile = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
-    this.componentRefFile = this.viewContainerRef.createComponent(componentFactoryFile);
-    this.componentRefFile.instance.setFiles(this.data);
-  }
-
-  deleteComponent(): void {
-    if (this.componentRefFile) {
-      this.componentRefFile.destroy();
-    }
-  }
+  // addComponent(files: File[]): void {
+  //   let i = 0;
+  //   let j = this.data.length;
+  //   const size = files.length;
+  //   while (i < size){
+  //     this.data[j] = files[i];
+  //     i++;
+  //     j++;
+  //   }
+  //   this.createComponent();
+  // }
+  //
+  // createComponent(): void {
+  //   const componentFactoryFile = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
+  //   this.componentRefFile = this.viewContainerRef.createComponent(componentFactoryFile);
+  //   this.componentRefFile.instance.setFiles(this.data);
+  // }
+  //
+  // deleteComponent(): void {
+  //   if (this.componentRefFile) {
+  //     this.componentRefFile.destroy();
+  //   }
+  // }
 
   startConverter(): void {
     this.componentRefFile.instance.startConverter();
