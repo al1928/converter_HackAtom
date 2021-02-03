@@ -1,11 +1,14 @@
 .button-converter {
-  background-color: rgb(66,66,66);
+  background-color: rgb(89,159,211);
   color: white;
   width: 250px;
   height: 65px;
   position: absolute;
   right: 0;
   cursor: pointer;
+  border-left-color: rgb(108, 167, 212);
+  border-left-style: solid;
+  border-left-width: 3px;
 }
 
 p {
@@ -14,10 +17,10 @@ p {
 }
 
 .button-converter:hover:active {
-  background-color: rgb(97,97,97);
+  background-color: rgb(129, 176, 212);
 }
 
 .button-converter:hover {
-  background-color: rgb(73,73,73);
+  background-color: rgb(112, 169, 212);
 }
 

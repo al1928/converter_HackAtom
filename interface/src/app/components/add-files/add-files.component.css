@@ -1,11 +1,14 @@
 .button-add-files {
-  background-color: rgb(66,66,66);
+  background-color: rgb(89,159,211);
   color: white;
   width: 250px;
   height: 65px;
   position: absolute;
   left: 0;
   cursor: pointer;
+  border-right-color: rgb(108, 167, 212);
+  border-right-style: solid;
+  border-right-width: 3px;
 }
 
 p {
@@ -14,9 +17,9 @@ p {
 }
 
 .button-add-files:hover:active {
-  background-color: rgb(97,97,97);
+  background-color: rgb(129, 176, 212);
 }
 
 .button-add-files:hover {
-  background-color: rgb(73,73,73);
+  background-color: rgb(112, 169, 212);
 }

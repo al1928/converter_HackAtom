@@ -1,14 +1,15 @@
 .footer {
-  background-color: rgb(63,81,181);
+  background-color: rgb(89,159,211);
   color: #fff;
   max-width: 1000px;
   height: 65px;
   z-index: 100;
-  box-shadow: 0 4px 7px 0 rgba(34, 60, 80, 0.5);
+  box-shadow: 0 -4px 10px -3px rgba(34, 60, 80, 0.5);
   position:-webkit-sticky !important;
   position: sticky !important;
   bottom:0;
   margin: auto;
 }
+
 
 
