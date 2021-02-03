@@ -20,5 +20,6 @@ p {
   z-index: 50;
   max-width: 400px;
   margin: auto;
+  margin-top: 50px !important;
 }
 

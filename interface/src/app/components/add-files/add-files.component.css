@@ -1,0 +1,22 @@
+.button-add-files {
+  background-color: rgb(66,66,66);
+  color: white;
+  width: 250px;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+}
+
+p {
+  font-size: 20px;
+  margin-top: 22px;
+}
+
+.button-add-files:hover:active {
+  background-color: rgb(97,97,97);
+}
+
+.button-add-files:hover {
+  background-color: rgb(73,73,73);
+}

@@ -1,0 +1,4 @@
+<div class="button-add-files" (click)="addFiles.click()">
+  <p>Добавить файлы</p>
+  <input  #addFiles type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
+</div>

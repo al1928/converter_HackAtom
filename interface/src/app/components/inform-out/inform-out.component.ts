@@ -13,7 +13,7 @@ import {FileNameComponent} from '../file-name/file-name.component';
   styleUrls: ['./inform-out.component.css']
 })
 export class InformOutComponent implements OnInit{
-  componentRef!: ComponentRef<FileNameComponent>;
+  componentRefFile!: ComponentRef<FileNameComponent>;
   data: File[] = [];
 
   constructor(
@@ -37,15 +37,18 @@ export class InformOutComponent implements OnInit{
   }
 
   createComponent(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
-    this.componentRef = this.viewContainerRef.createComponent(componentFactory);
-    this.componentRef.instance.setFiles(this.data);
+    const componentFactoryFile = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
+    this.componentRefFile = this.viewContainerRef.createComponent(componentFactoryFile);
+    this.componentRefFile.instance.setFiles(this.data);
   }
 
   deleteComponent(): void {
-    if (this.componentRef) {
-      this.componentRef.destroy();
+    if (this.componentRefFile) {
+      this.componentRefFile.destroy();
     }
   }
 
+  startConverter(): void {
+    this.componentRefFile.instance.startConverter();
+  }
 }

@@ -8,14 +8,19 @@ import {InformOutComponent} from '../inform-out/inform-out.component';
 })
 export class FileSelectionComponent implements OnInit {
   private fileArray: File[] = [];
+  isDisplay: boolean;
 
   constructor(private informOut: InformOutComponent) {
+    this.isDisplay = true;
   }
 
   ngOnInit(): void {
   }
 
   importFile($event: any): void {
+    if (this.isDisplay) {
+      this.isDisplay = false;
+    }
     if ($event.target.files.length === 0) {
       console.log('No file selected!');
       return;

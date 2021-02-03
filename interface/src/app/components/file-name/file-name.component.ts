@@ -85,10 +85,16 @@ export class FileNameComponent{
   }
 
   onDownload(file: File): void {
-    this.data.set(file, this.progressStatus.processing);
-    setTimeout(() => {
-      this.data.set(file, this.progressStatus.loaded);
-    }, 3000);
+    if (this.data.get(file) !== this.progressStatus.loaded) {
+      this.data.set(file, this.progressStatus.processing);
+      setTimeout(() => {
+        this.data.set(file, this.progressStatus.loaded);
+      }, 3000);
+    }
+  }
+
+  startConverter(): void {
+    this.files.map(p => this.onDownload(p));
   }
 }
 

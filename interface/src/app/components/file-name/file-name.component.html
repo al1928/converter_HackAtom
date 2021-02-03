@@ -1,15 +1,21 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="isEmpty">
-  <div class="example-box" *ngFor="let file of files; let i = index" cdkDrag [ngStyle]="{ 'display: none;' : i == indexDelete }">
-    <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
-    <p class="p-name">{{file.name}}</p>
-    <mat-progress-bar mode="indeterminate" class="progress-bar-style"
-                      *ngIf="data.get(file) === progressStatus.processing"></mat-progress-bar>
-    <span *ngIf="data.get(file) === progressStatus.loaded" class="loaded">Загружено</span>
-    <p class="p-size">{{calculate(file.size)}}</p>
-    <span class="material-icons dl-style" (click)="onDownload(file)"
-          [ngClass]="{ 'dl-off' : data.get(file) === progressStatus.loaded }">download</span>
-    <span class="material-icons clear-style" (click)="onClear(i)">clear</span>
+<div>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="isEmpty">
+    <div class="example-box" *ngFor="let file of files; let i = index" cdkDrag [ngStyle]="{ 'display: none;' : i == indexDelete }">
+      <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
+      <p class="p-name">{{file.name}}</p>
+      <mat-progress-bar mode="indeterminate" class="progress-bar-style"
+                        *ngIf="data.get(file) === progressStatus.processing"></mat-progress-bar>
+      <span *ngIf="data.get(file) === progressStatus.loaded" class="loaded">Загружено</span>
+      <p class="p-size">{{calculate(file.size)}}</p>
+      <span class="material-icons dl-style" (click)="onDownload(file)"
+            [ngClass]="{ 'dl-off' : data.get(file) === progressStatus.loaded }">download</span>
+      <span class="material-icons clear-style" (click)="onClear(i)">clear</span>
+    </div>
   </div>
+  <app-footer *ngIf="this.isEmpty"></app-footer>
+  <br>
+  <br>
+  <br>
 </div>
 
 

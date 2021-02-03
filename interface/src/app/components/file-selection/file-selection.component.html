@@ -3,9 +3,10 @@
   <button #upload mat-raised-button
           color="primary"
           (click)="file.click()"
-          class="file-selection-style">
+          class="file-selection-style"
+          *ngIf="this.isDisplay">
     Выберите файл</button>
   <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
-  <p>или просто перетащите</p>
+  <p *ngIf="this.isDisplay">или просто перетащите</p>
 </div>
 

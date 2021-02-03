@@ -1,0 +1,23 @@
+.button-converter {
+  background-color: rgb(66,66,66);
+  color: white;
+  width: 250px;
+  height: 65px;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+p {
+  font-size: 20px;
+  margin-top: 22px;
+}
+
+.button-converter:hover:active {
+  background-color: rgb(97,97,97);
+}
+
+.button-converter:hover {
+  background-color: rgb(73,73,73);
+}
+
