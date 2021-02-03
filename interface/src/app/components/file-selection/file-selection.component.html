@@ -1,14 +1,42 @@
 <div>
-  <div class="file-selection-div-style">
-    <h1 >Сервис распознования речи</h1>
-    <button #upload mat-raised-button
-            (click)="file.click()"
-            class="file-selection-style"
-            *ngIf="this.isDisplay">
-      Выберите файл</button>
-    <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
-    <p *ngIf="this.isDisplay">или просто перетащите</p>
+  <div>
+    <div class="file-selection-div-style">
+      <h1 >Сервис распознования речи</h1>
+      <button #upload mat-raised-button
+              (click)="file.click()"
+              class="file-selection-style"
+              *ngIf="this.isDisplay">
+        Выберите файл</button>
+      <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
+      <p *ngIf="this.isDisplay" class="hint">или просто перетащите</p>
+    </div>
+    <div *ngIf="!this.isDisplay">
+      <div >
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let file of files; let i = index" cdkDrag [ngStyle]="{ 'display: none;' : i == indexDelete }">
+            <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
+            <p class="p-name">{{file.name}}</p>
+            <mat-progress-bar mode="indeterminate" class="progress-bar-style"
+                              *ngIf="data.get(file) === progressStatus.processing"></mat-progress-bar>
+            <span *ngIf="data.get(file) === progressStatus.loaded" class="loaded">Загружено</span>
+            <p class="p-size">{{calculate(file.size)}}</p>
+            <span class="material-icons dl-style" (click)="onDownload(file)"
+                  [ngClass]="{ 'dl-off' : data.get(file) === progressStatus.loaded }">download</span>
+            <span class="material-icons clear-style" (click)="onClear(i)">clear</span>
+          </div>
+        </div>
+        <app-footer></app-footer>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+    </div>
+  <div class="area"
+       (drop)="onDrop($event)"
+       (dragenter)="dragenter($event)"
+       (dragover)="dragover($event)"
+       (dragleave)="dragleave($event)"
+       [ngClass]="{ 'area-on' : isDragenter}">
   </div>
-  <app-file-name *ngIf="!this.isDisplay" [files]="this.fileArray" (isDisplay)="setIsDisplay($event)"></app-file-name>
 </div>
-

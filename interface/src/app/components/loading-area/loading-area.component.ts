@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FileSelectionComponent} from '../file-selection/file-selection.component';
 
 @Component({
   selector: 'app-loading-area',

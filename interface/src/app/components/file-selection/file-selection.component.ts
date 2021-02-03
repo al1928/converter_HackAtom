@@ -1,19 +1,33 @@
-import {Component, ComponentRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {FileNameComponent} from '../file-name/file-name.component';
+import {Component, OnInit} from '@angular/core';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {ProgressStatus} from '../../models/progress-status';
+import {Icons} from '../../models/icons';
 
 @Component({
   selector: 'app-file-selection',
   templateUrl: './file-selection.component.html',
   styleUrls: ['./file-selection.component.css']
 })
-export class FileSelectionComponent implements OnInit, OnChanges {
-  @Input() fileArray: File[] = [];
+export class FileSelectionComponent implements OnInit {
+  files: File[] = [];
   isDisplay: boolean;
-  @Input() isDisplayArea!: boolean;
-  componentRefFile!: ComponentRef<FileNameComponent>;
+  isDragenter: boolean;
+  // componentRefFile!: ComponentRef<FileNameComponent>;
+  indexDelete: number;
+  private differenceBetweenBytesAndMegabytes = 1048576;
+  private differenceBetweenBytesAndKilobytes = 1024;
+  statusDownload: number;
+  index: number;
+  data: Map<File, number> = new Map<File, number>();
 
-  constructor() {
+  constructor(
+    public progressStatus: ProgressStatus,
+    private icons: Icons) {
+    this.indexDelete = -1;
+    this.index = -1;
+    this.statusDownload = this.progressStatus.sent;
     this.isDisplay = true;
+    this.isDragenter = false;
   }
 
   ngOnInit(): void {
@@ -29,7 +43,7 @@ export class FileSelectionComponent implements OnInit, OnChanges {
   }
 
   loadingFiles(files: FileList): void {
-    this.fileArray = Array.from(files);
+    this.files = this.files.concat(Array.from(files));
     if (this.isDisplay) {
       this.isDisplay = false;
     }
@@ -48,15 +62,88 @@ export class FileSelectionComponent implements OnInit, OnChanges {
   // }
 
   setFiles(data: File[]): void {
-    this.fileArray = data;
+    this.files = data;
   }
 
-  setIsDisplay(is: boolean): void{
-    this.isDisplay = is;
+  onDrop($event: any): void {
+    this.isDragenter = false;
+    if (this.isDisplay) {
+      this.isDisplay = false;
+    }
+    $event.preventDefault();
+    $event.stopPropagation();
+    if ($event.dataTransfer.files) {
+      const files: FileList = $event.dataTransfer.files;
+      this.files = this.files.concat(Array.from(files));
+      console.log(this.files);
+    }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isDisplay = this.isDisplayArea;
-    console.log(this.isDisplay);
+  dragenter($event: any): void {
+    this.isDragenter = false;
+    $event.preventDefault();
+  }
+
+  dragover($event: any): void {
+    this.isDragenter = true;
+    $event.preventDefault();
+  }
+
+  dragleave($event: any): void {
+    this.isDragenter = false;
+    $event.preventDefault();
+  }
+
+  drop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.files, event.previousIndex, event.currentIndex);
+  }
+
+  deleteFiles(): void{
+    this.data.clear();
+    this.files.splice(0, this.files.length);
+    console.log(this.files);
+    if (this.files.length === 0){
+      this.isDisplay = true;
+    }
+  }
+
+  calculate(size: number): string {
+    if (size > this.differenceBetweenBytesAndMegabytes) {
+      const sizeMB = size / this.differenceBetweenBytesAndMegabytes;
+      return parseFloat(sizeMB.toFixed(2)) + ' MBytes';
+    } else if (size > this.differenceBetweenBytesAndKilobytes) {
+      const sizeKB = size / this.differenceBetweenBytesAndKilobytes;
+      return parseFloat(sizeKB.toFixed(2)) + ' KBytes';
+    } else {
+      return size + ' Bytes';
+    }
+  }
+
+  getIcon(name: string): string {
+    return this.icons.data.mp3;
+  }
+
+  onClear(i: number): void {
+    this.indexDelete = i;
+    const index = this.files.indexOf(this.files[i], 0);
+    if (index > -1) {
+      this.files.splice(index, 1);
+    }
+    if (this.files.length <= 0 ){
+      this.isDisplay = true;
+    }
+  }
+
+  onDownload(file: File): void {
+    if (this.data.get(file) !== this.progressStatus.loaded) {
+      this.data.set(file, this.progressStatus.processing);
+      setTimeout(() => {
+        this.data.set(file, this.progressStatus.loaded);
+      }, 3000);
+    }
+  }
+
+  startConverter(): void {
+    this.files.map(p => this.onDownload(p));
   }
 }

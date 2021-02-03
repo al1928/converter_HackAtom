@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileNameComponent} from '../file-name/file-name.component';
+import {FileSelectionComponent} from '../file-selection/file-selection.component';
 
 @Component({
   selector: 'app-cleaning',
@@ -8,12 +8,12 @@ import {FileNameComponent} from '../file-name/file-name.component';
 })
 export class CleaningComponent implements OnInit {
 
-  constructor(private fileName: FileNameComponent) { }
+  constructor(private fileSelection: FileSelectionComponent) { }
 
   ngOnInit(): void {
   }
 
   onCleaning(): void {
-    this.fileName.deleteFiles();
+    this.fileSelection.deleteFiles();
   }
 }
