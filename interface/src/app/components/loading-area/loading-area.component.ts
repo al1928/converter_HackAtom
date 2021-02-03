@@ -7,9 +7,11 @@ import {FileSelectionComponent} from '../file-selection/file-selection.component
   styleUrls: ['./loading-area.component.css']
 })
 export class LoadingAreaComponent implements OnInit {
-  public isDragenter: boolean;
+  isDragenter: boolean;
+  isDisplayArea = true;
+  files: File[] = [];
 
-  constructor(private fileSelection: FileSelectionComponent) {
+  constructor() {
     this.isDragenter = false;
   }
 
@@ -17,12 +19,14 @@ export class LoadingAreaComponent implements OnInit {
   }
 
   onDrop($event: any): void {
+    this.isDisplayArea = false;
     this.isDragenter = false;
     $event.preventDefault();
     $event.stopPropagation();
     if ($event.dataTransfer.files) {
       const files: FileList = $event.dataTransfer.files;
-      this.fileSelection.loadingFiles(files);
+      this.files = this.files.concat(Array.from(files));
+      console.log(this.files);
     }
   }
 

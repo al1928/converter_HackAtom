@@ -1,4 +1,4 @@
-import {Component, ComponentRef, OnInit} from '@angular/core';
+import {Component, ComponentRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FileNameComponent} from '../file-name/file-name.component';
 
 @Component({
@@ -6,9 +6,10 @@ import {FileNameComponent} from '../file-name/file-name.component';
   templateUrl: './file-selection.component.html',
   styleUrls: ['./file-selection.component.css']
 })
-export class FileSelectionComponent implements OnInit {
-  fileArray: File[] = [];
+export class FileSelectionComponent implements OnInit, OnChanges {
+  @Input() fileArray: File[] = [];
   isDisplay: boolean;
+  @Input() isDisplayArea!: boolean;
   componentRefFile!: ComponentRef<FileNameComponent>;
 
   constructor() {
@@ -19,9 +20,6 @@ export class FileSelectionComponent implements OnInit {
   }
 
   importFile($event: any): void {
-    if (this.isDisplay) {
-      this.isDisplay = false;
-    }
     if ($event.target.files.length === 0) {
       console.log('No file selected!');
       return;
@@ -31,12 +29,10 @@ export class FileSelectionComponent implements OnInit {
   }
 
   loadingFiles(files: FileList): void {
-    const name = files[0].name;
-    console.log(name);
     this.fileArray = Array.from(files);
-    // this.deleteComponent();
-    // this.createComponent();
-    console.log(this.fileArray);
+    if (this.isDisplay) {
+      this.isDisplay = false;
+    }
   }
 
   // createComponent(): void {
@@ -57,5 +53,10 @@ export class FileSelectionComponent implements OnInit {
 
   setIsDisplay(is: boolean): void{
     this.isDisplay = is;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isDisplay = this.isDisplayArea;
+    console.log(this.isDisplay);
   }
 }

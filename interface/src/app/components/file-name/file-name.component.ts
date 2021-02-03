@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Icons} from '../../models/icons';
 import {ProgressStatus} from '../../models/progress-status';
@@ -81,8 +81,8 @@ export class FileNameComponent implements OnChanges{
     this.files.map(p => this.onDownload(p));
   }
 
-  ngOnChanges(): void {
-      this.files.map(p =>  this.data.set(p, this.progressStatus.sent));
+  ngOnChanges(changes: SimpleChanges): void {
+    this.files.map(p =>  this.data.set(p, this.progressStatus.sent));
   }
 }
 
