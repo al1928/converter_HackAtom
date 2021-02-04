@@ -58,4 +58,14 @@
 .footer-end-style {
   background: rgb(63, 102, 138);
   color: white;
+  max-width: 100%;
+}
+
+.info-p {
+  font-size: 14px;
+  font-weight: lighter;
+  margin-top: 13px;
+  position: absolute;
+  right: 15px;
+  color: lightgray;
 }
