@@ -123,7 +123,12 @@ export class FileSelectionComponent implements OnInit {
   }
 
   getIcon(name: string): string {
-    return this.icons.data.mp3;
+    const type = name.substr(name.length - 3, name.length);
+    if (type === 'mp3') {
+      return this.icons.data.mp3;
+    } else {
+      return this.icons.data.wav;
+    }
   }
 
   onClear(i: number): void {
@@ -144,7 +149,7 @@ export class FileSelectionComponent implements OnInit {
       const dataBlob: Observable<Blob> = this.fileConverter.getTextFiles(file);
       dataBlob.subscribe( value => {
         const blob = new Blob([value],
-          { type: 'text/plain;charset=utf-8'});
+          { type: 'text/plain'});
 
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
           window.navigator.msSaveOrOpenBlob(blob);

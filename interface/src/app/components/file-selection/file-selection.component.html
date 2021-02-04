@@ -7,14 +7,14 @@
               class="file-selection-style"
               *ngIf="this.isDisplay">
         Выберите файл</button>
-      <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3" multiple>
+      <input  #file type="file" style="display: none;" (change)="importFile($event)" accept="audio/mp3, audio/wav" multiple>
       <p *ngIf="this.isDisplay" class="hint">или просто перетащите</p>
     </div>
     <div *ngIf="!this.isDisplay">
       <div >
         <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
           <div class="example-box" *ngFor="let file of files; let i = index" cdkDrag [ngStyle]="{ 'display: none;' : i == indexDelete }">
-            <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 25px; max-width: 25px">
+            <img src="{{getIcon(file.name)}}" alt="icon" style="max-height: 40px; margin-top: 2px;">
             <p class="p-name">{{file.name}}</p>
             <mat-progress-bar mode="indeterminate" class="progress-bar-style"
                               *ngIf="data.get(file) === progressStatus.processing"></mat-progress-bar>
