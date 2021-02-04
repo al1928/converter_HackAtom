@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
-import time
+import datetime
 import wave
 import pydub
 
@@ -29,6 +29,7 @@ def convert_wav_to_text(model, filename) -> str:
     if get_file_format(filename) != "wav":
         filename = convert_mp3_to_wav(filename)
     wf = wave.open(filename, "rb")
+    print(f"\nWavFilename {filename}\n", "#"*30)
     # wf.read(44) # skip header
     # You can also specify the possible word list
     # rec = KaldiRecognizer(model, 16000, "zero oh one two three four five six seven eight nine")
@@ -45,9 +46,9 @@ def convert_wav_to_text(model, filename) -> str:
 
 
 def timer(func):
-    start_time = time.time()
+    start_time = datetime.now()
     print(func)
-    print("Time: ", time.time() - start_time)
+    print("Time: ", datetime.now() - start_time)
 
 
 def convert_mp3_to_wav(mp3_filename: str) -> str:
@@ -70,7 +71,10 @@ path_en_file = "LongWelcome.wav"
 mp3_filename1 = "1.mp3"
 mp3_filename2 = "text_1_full.mp3"
 
-timer(convert_wav_to_text(model, mp3_filename2))
+
+test_en = "audio.mp3"
+test_ru = "аудиозапись.mp3"
+timer(convert_wav_to_text(model, mp3_filename1))
 
 
 
