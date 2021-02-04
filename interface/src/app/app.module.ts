@@ -19,6 +19,7 @@ import {ProgressStatus} from './models/progress-status';
 import { CleaningComponent } from './components/cleaning/cleaning.component';
 import { HintComponent } from './components/hint/hint.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     HintComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FileSelectionComponent} from '../file-selection/file-selection.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-converter',
@@ -7,6 +8,7 @@ import {FileSelectionComponent} from '../file-selection/file-selection.component
   styleUrls: ['./converter.component.css']
 })
 export class ConverterComponent implements OnInit {
+  url = environment.apiUrl;
 
   constructor(private fileSelection: FileSelectionComponent) { }
 
@@ -15,5 +17,6 @@ export class ConverterComponent implements OnInit {
 
   onConverter(): void {
     this.fileSelection.startConverter();
+
   }
 }

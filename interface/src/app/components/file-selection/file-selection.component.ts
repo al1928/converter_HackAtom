@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProgressStatus} from '../../models/progress-status';
 import {Icons} from '../../models/icons';
+import {FileConverterService} from '../../services/file-converter/file-converter.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-file-selection',
@@ -22,7 +24,8 @@ export class FileSelectionComponent implements OnInit {
 
   constructor(
     public progressStatus: ProgressStatus,
-    private icons: Icons) {
+    private icons: Icons,
+    private fileConverter: FileConverterService) {
     this.indexDelete = -1;
     this.index = -1;
     this.statusDownload = this.progressStatus.sent;
@@ -137,9 +140,29 @@ export class FileSelectionComponent implements OnInit {
   onDownload(file: File): void {
     if (this.data.get(file) !== this.progressStatus.loaded) {
       this.data.set(file, this.progressStatus.processing);
-      setTimeout(() => {
-        this.data.set(file, this.progressStatus.loaded);
-      }, 3000);
+
+      const dataBlob: Observable<Blob> = this.fileConverter.getTextFiles(file);
+      dataBlob.subscribe( value => {
+        const blob = new Blob([value],
+          { type: 'text/plain;charset=utf-8'});
+
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob);
+          return;
+        }
+
+        const data = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = data;
+        link.download = 'test.txt';
+        link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+
+        setTimeout(() => {
+          window.URL.revokeObjectURL(data);
+          link.remove();
+        }, 100);
+      });
+      this.data.set(file, this.progressStatus.loaded);
     }
   }
 
