@@ -76,9 +76,19 @@ export class FileSelectionComponent implements OnInit {
     $event.preventDefault();
     $event.stopPropagation();
     if ($event.dataTransfer.files) {
-      const files: FileList = $event.dataTransfer.files;
-      this.files = this.files.concat(Array.from(files));
-      console.log(this.files);
+      const files: Set<File> = new Set(Array.from($event.dataTransfer.files));
+      for (const file of files) {
+        const name: string = file.name;
+        const type = name.substr(name.length - 3, name.length);
+        if (type !== 'mp3' && type !== 'wav') {
+          files.delete(file);
+        }
+      }
+      if (files.size <= 0 ){
+        this.isDisplay = true;
+      } else {
+        this.files = this.files.concat(Array.from(files));
+      }
     }
   }
 
