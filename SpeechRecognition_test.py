@@ -76,25 +76,24 @@ def get_large_audio_transcription(path, lang="ru-RU") -> str:
 def get_file_format(path) -> str:
     return path.split(".")[-1]
 
-
+# не рабочие пут
 path_ru_off = "audio/Phone_ARU_OFF.wav"
 path_ru_on = "audio/Phone_ARU_ON.wav"
 path_long_ru_on = "audio/Microphone_ARU_ON.wav"
 path_long_ru_off = "audio/Microphone_ARU_OFF.wav"
 path_en = "audio/Welcome.wav"
 path_long_en = "audio/LongWelcome.wav"
-path_long_text = "audio/long_text.mp3"
-path_mp3 = "audio/hello.mp3"
-path_1 = "audio/1.mp3"
 
-test_en = r"example\audio.mp3"
-test_ru = r"example\аудиозапись.mp3"
-hi_en = r"example\text_1_full.mp3"
-welcome_en = r"example\Welcome.wav"
-one_en = r"example\1.mp3"
+# рабочие пути
+path_mp3 = r"audio\short_mp3.mp3"
+test_en = r"audio\audio.mp3"
+test_ru = r"audio\аудиозапись.mp3"
+hi_en = r"audio\text_1_full.mp3"
+welcome_en = r"audio\Welcome.wav"
+one_en = r"audio\1.mp3"
 
 start_time = datetime.now()
 print("Runtime: ", start_time)
-print(get_large_audio_transcription(path=test_ru, lang="ru-RU"))
+print(get_large_audio_transcription(path=path_mp3, lang="en-US"))
 print("Time: ", datetime.now() - start_time)
 
