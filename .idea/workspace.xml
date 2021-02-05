@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97ec1c43-d231-4544-ad18-76202fe3f3c5" name="Default Changelist" comment="add ru and en small model (нужно добрать другие/улучшить эти)">
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vosk-api/python/example/ffprobe.exe" afterDir="false" />
+    <list default="true" id="97ec1c43-d231-4544-ad18-76202fe3f3c5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vosk-api/python/example/convert-test.py" beforeDir="false" afterPath="$PROJECT_DIR$/vosk-api/python/example/convert-test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/audio.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vosk-api/python/example/ffmpeg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vosk-api/python/ffmpeg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vosk-api/python/example/ffprobe.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vosk-api/python/ffprobe.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="interface-test" />
+        <entry key="$PROJECT_DIR$" value="speech_recognition" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +43,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vosk-api/python/example" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vosk-api/python" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -69,7 +68,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.convert-test">
+  <component name="RunManager" selected="Python.SpeechRecognition_test">
     <configuration name="SpeechRecognition_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="converter_HackAtom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.convert-test" />
-        <item itemvalue="Python.ffmpeg" />
         <item itemvalue="Python tests.pytest in ffmpeg.py" />
         <item itemvalue="Python.vosk_test" />
         <item itemvalue="Python.SpeechRecognition_test" />
+        <item itemvalue="Python.ffmpeg" />
+        <item itemvalue="Python.convert-test" />
       </list>
     </recent_temporary>
   </component>
