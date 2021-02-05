@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'converter'
+    'converter',
+    'converter/vosk/vosk-api/python'
 ]
 
 MIDDLEWARE = [

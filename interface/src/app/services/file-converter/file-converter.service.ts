@@ -12,14 +12,16 @@ export class FileConverterService {
 
   getTextFiles(file: File): Observable<Blob> {
     const headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', 'POST');
-    headers.append('Access-Control-Allow-Origin', '*');
-
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    const type = file.name.substr(file.name.length - 3, file.name.length);
+    const blob = new Blob([file], { type: 'audio/' + type});
     const formData = new FormData();
-    formData.append('file', file);
-
-
-    return this.api.post('postFiles', formData, headers);
+    formData.append('file', blob);
+    if (type === 'mp3') {
+      return this.api.post('file-mp3', formData, headers);
+    } else {
+      return this.api.post('file-wav', formData, headers);
+    }
   }
 }
