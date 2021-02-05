@@ -1,34 +1,76 @@
-<div class="hint-sticky">
+
   <div class="hint-style">
-    <div class="hint-step-one">
-      <p class="step-p">
-        Шаг
-      </p>
-      <span matBadge="1" matBadgeSize="large" class="hint-span"></span>
-      <p class="hint-p">
-        Загружайте свои аудио
-      </p>
+<!--    <div class="hint-step-one">-->
+<!--      <p class="step-p">-->
+<!--        Шаг-->
+<!--      </p>-->
+<!--      <span matBadge="1" matBadgeSize="large" class="hint-span"></span>-->
+<!--      <p class="hint-p">-->
+<!--        Загружайте свои аудио-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="hint-step-two">-->
+<!--      <p class="step-p">-->
+<!--        Шаг-->
+<!--      </p>-->
+<!--      <span matBadge="2" matBadgeSize="large" class="hint-span"></span>-->
+<!--      <p class="hint-p">-->
+<!--        Конвертируйте их в текст-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="hint-step-three">-->
+<!--      <p class="step-p">-->
+<!--        Шаг-->
+<!--      </p>-->
+<!--      <span matBadge="3" matBadgeSize="large" class="hint-span"></span>-->
+<!--      <p class="hint-p">-->
+<!--        Скачивайте файлы-->
+<!--      </p>-->
+<!--    </div>-->
+    <div class="one-row-hint">
+      <div class="hint-location hint-one" style="margin-top: 50px;">
+        <span class="material-icons style-icons" style="font-size: 40px;">
+          autorenew
+        </span>
+        <h3 style="font-weight: 500;">Как выполнить конвертацию?</h3>
+        Перетащите файл в конвертер. MP3, WAV и аудио файлы будут преобразованы в файлы выбранного формата. По умолчанию в файл txt формата.
+      </div>
+      <div class="hint-location hint-two" style="margin-top: 50px;">
+        <img src="assets/icons/description.svg" style="height: 40px;" alt="description">
+        <h3 style="font-weight: 500;">Почему можно выбрать файлы только MP3 и WAV форматов?</h3>
+        В данный момент сервис работает только с аудио файлами формата MP3 или WAV.
+      </div>
+      <div class="hint-location hint-three" style="margin-top: 50px;">
+        <span class="material-icons style-icons" style="font-size: 40px;">
+          hourglass_empty
+        </span>
+        <h3 style="font-weight: 500;">Сколько нужно ждать конвертации файла?</h3>
+        Процесс преобразование аудио файла в текст занимает времени пропорционально длительности аудио файла. Файл длительностью 5 минут будет конвертироваться примерно 4 минуты.
+      </div>
     </div>
-    <div class="hint-step-two">
-      <p class="step-p">
-        Шаг
-      </p>
-      <span matBadge="2" matBadgeSize="large" class="hint-span"></span>
-      <p class="hint-p">
-        Конвертируйте их в текст
-      </p>
-    </div>
-    <div class="hint-step-three">
-      <p class="step-p">
-        Шаг
-      </p>
-      <span matBadge="3" matBadgeSize="large" class="hint-span"></span>
-      <p class="hint-p">
-        Скачивайте файлы
-      </p>
+    <div class="one-two-hint">
+      <div class="hint-location hint-one" style="margin-top: 70px;">
+        <img src="assets/icons/pan_tool.svg" style="height: 40px;" alt="pan_tool">
+        <h3 style="font-weight: 500;">Можно ли задать последовательность конвертирумых файлов?</h3>
+        Захватите элемент с названием файла и перетащите его в нужную для вас позицию в списке файлов.
+      </div>
+      <div class="hint-location hint-two" style="margin-top: 70px;">
+        <span class="material-icons style-icons" style="font-size: 40px;">
+          download
+        </span>
+        <h3 style="font-weight: 500;">Как конвертировать только один файл из списка?</h3>
+        В строке файла справа есть соответствующая кнопка. После ее нажатия конвертирование будет производиться только для выбранного файла.
+      </div>
+      <div class="hint-location hint-three" style="margin-top: 70px;">
+        <span class="material-icons style-icons" style="font-size: 40px;">
+          clear
+        </span>
+        <h3 style="font-weight: 500;">Как можно удалить файл из списка?</h3>
+        Для удаления одного файла справа в строке файла есть соответсвуюшая кнопка. Для удаления всех файлов можно нажать на кнопку "очистить" или обновить страницу.
+      </div>
     </div>
   </div>
-  <mat-toolbar class="mat-toolbar footer-end-style">
+  <mat-toolbar class="mat-toolbar footer-end-style" #destination id="destination">
     <span class="nav-tool-items">
       <a mat-button routerLink="" routerLinkActive="active">Типы конвертаций</a>
       <a mat-button routerLink="" routerLinkActive="active">Частые вопросы</a>
@@ -36,4 +78,4 @@
     </span>
     <p class="info-p">wannatea © 2021 Проект разработан в рамках HackAtom</p>
   </mat-toolbar>
-</div>
+

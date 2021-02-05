@@ -20,6 +20,7 @@ import { CleaningComponent } from './components/cleaning/cleaning.component';
 import { HintComponent } from './components/hint/hint.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {HttpClientModule} from '@angular/common/http';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     MatProgressBarModule,
     MatToolbarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     FileSelectionComponent,

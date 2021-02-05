@@ -1,12 +1,8 @@
-.hint-sticky{
-  width: 100%;
-  margin-top: 26.3vh;
-}
-
 .hint-style {
-  width: 100%;
-  height: 300px;
+  max-width: 100%;
+  height: 700px;
   background-color: white;
+  margin-top: 18vh;
 }
 
 .step-p {
@@ -68,4 +64,40 @@
   position: absolute;
   right: 15px;
   color: lightgray;
+}
+
+.hint-one {
+  margin-left: 5px;
+}
+
+.hint-two {
+  margin-left: 90px;
+}
+
+.hint-three {
+  margin-left: 90px;
+}
+
+.hint-location {
+  width: 240px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 15px;
+}
+
+.one-row-hint {
+  margin: auto;
+  display: block;
+  width: 905px;
+}
+
+.one-two-hint {
+  margin: auto;
+  display: block;
+  width: 905px;
+}
+
+.style-icons {
+  color: rgb(81, 129, 174);
 }

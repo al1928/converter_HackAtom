@@ -7,4 +7,5 @@ mat-toolbar-row {
   position: absolute;
   top: 0;
   background-color: rgb(255,255,255);
+  z-index: 50;
 }
