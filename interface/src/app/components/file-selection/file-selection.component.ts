@@ -92,6 +92,10 @@ export class FileSelectionComponent implements OnInit {
         this.isDisplay = true;
       } else {
         this.files = this.files.concat(Array.from(files));
+        const tempData = Array.from(files);
+        for (const file of tempData){
+          this.data.set(file, this.progressStatus.sent);
+        }
       }
     }
   }

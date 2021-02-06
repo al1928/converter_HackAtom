@@ -26,7 +26,6 @@ def getTextFromMP3(request):
     :return: response: HttpResponse
     """
     if request.method == 'POST':
-        logger = logging.getLogger("django")
 
         file = request.FILES['file']
 
@@ -34,8 +33,8 @@ def getTextFromMP3(request):
         with open(file_name, "wb") as aud:
             aud_stream = file.read()
             aud.write(aud_stream)
-            Counter.mp3_count += 1
-            logger.info(Counter.mp3_count)
+
+        Counter.mp3_count += 1
 
         b, path_mono_file = getText(file_name)
 
@@ -63,8 +62,8 @@ def getTextFromWAV(request):
         with open(file_name, "wb") as aud:
             aud_stream = file.read()
             aud.write(aud_stream)
-            Counter.wav_count += 1
-            logger.info(Counter.wav_count)
+
+        Counter.wav_count += 1
 
         b, path_mono_file = getText(file_name)
 
@@ -84,6 +83,10 @@ def getText(file_name):
     converter = ConverterSpeechToText()
     path_mono_file = converter.stereo_to_mono(file_name)
     text = converter.recognition(path_mono_file)
+
+    for i in range(130, len(text), 130):
+        text = text[:i] + ' \n ' + text[i:]
+
     return bytes(text, 'utf-8'), path_mono_file
 
 

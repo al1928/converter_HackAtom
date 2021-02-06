@@ -21,7 +21,7 @@
             <span *ngIf="data.get(file) === progressStatus.loaded" class="loaded">Загружено</span>
             <p class="p-size">{{calculate(file.size)}}</p>
             <span class="material-icons dl-style" (click)="onDownload(file)"
-                  [ngClass]="{ 'dl-off' : data.get(file) === progressStatus.loaded }">download</span>
+                  [ngClass]="{ 'dl-off' : data.get(file) !== progressStatus.sent }">download</span>
             <span class="material-icons clear-style" (click)="onClear(i)">clear</span>
           </div>
         </div>
