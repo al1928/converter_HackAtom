@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -34,12 +34,15 @@ def getTextFromMP3(request):
         converter = ConverterSpeechToText()
         path_mono_file = converter.stereo_to_mono(file_name)
         logger.info(path_mono_file)
-        a = converter.recognition(path_mono_file)
-        logger.info(a)
+        text = converter.recognition(path_mono_file)
+        b = bytes(text, 'utf-8')
 
-        url = "/files/test.txt"
-        response = HttpResponse()
-        response['X-Accel-Redirect'] = url
+        url = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.wav_count) + ".txt"
+
+        with open(url, 'r+b') as txt:
+            txt.write(b)
+            response = HttpResponse(txt, content_type='text/plain;charset=UTF-8')
+
         return response
 
 
@@ -50,7 +53,7 @@ def getTextFromWAV(request):
 
         file = request.FILES['file']
 
-        file_name = "audiocash/" + str(Counter.wav_count) + ".wav"
+        file_name = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.wav_count) + ".wav"
         with open(file_name, "wb") as aud:
             aud_stream = file.read()
             aud.write(aud_stream)
@@ -60,10 +63,13 @@ def getTextFromWAV(request):
         converter = ConverterSpeechToText()
         path_mono_file = converter.stereo_to_mono(file_name)
         logger.info(path_mono_file)
-        a = converter.recognition(path_mono_file)
-        logger.info(a)
+        text = converter.recognition(path_mono_file)
+        b = bytes(text, 'utf-8')
 
-        url = "/files/test.txt"
-        response = HttpResponse()
-        response['X-Accel-Redirect'] = url
+        url = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.wav_count) + ".txt"
+
+        with open(url, 'r+b') as txt:
+            txt.write(b)
+            response = HttpResponse(txt, content_type='text/plain;charset=UTF-8')
+
         return response
