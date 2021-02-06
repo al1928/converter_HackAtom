@@ -36,6 +36,10 @@ export class FileSelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Импортирует файлы
+   * @param $event - ивент выбора файлов
+   */
   importFile($event: any): void {
     if ($event.target.files.length === 0) {
       console.log('No file selected!');
@@ -45,29 +49,29 @@ export class FileSelectionComponent implements OnInit {
     this.loadingFiles(files);
   }
 
+  /**
+   * Загружает файлы в кеш, делая видимым список на странице
+   * @param files - FileList
+   */
   loadingFiles(files: FileList): void {
-    this.files = this.files.concat(Array.from(files));
+    const tempData = Array.from(files);
+    this.files = this.files.concat(tempData);
+    for (const file of tempData){
+      this.data.set(file, this.progressStatus.sent);
+    }
     if (this.isDisplay) {
       this.isDisplay = false;
     }
   }
 
-  // createComponent(): void {
-  //   const componentFactoryFile = this.componentFactoryResolver.resolveComponentFactory(FileNameComponent);
-  //   this.componentRefFile = this.viewContainerRef.createComponent(componentFactoryFile);
-  //   this.componentRefFile.instance.setFiles(this.fileArray);
-  // }
-  //
-  // deleteComponent(): void {
-  //   if (this.componentRefFile) {
-  //     this.componentRefFile.destroy();
-  //   }
-  // }
-
   setFiles(data: File[]): void {
     this.files = data;
   }
 
+  /**
+   * Событие отпускание файлов на странице
+   * @param $event - ивент отпущенных файлов
+   */
   onDrop($event: any): void {
     this.isDragenter = false;
     if (this.isDisplay) {
@@ -107,10 +111,17 @@ export class FileSelectionComponent implements OnInit {
     $event.preventDefault();
   }
 
+  /**
+   * Функция переноса элементов в списке
+   * @param event - ивент переноса элемента
+   */
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
+  /**
+   * Функция удаления всех файлов
+   */
   deleteFiles(): void{
     this.data.clear();
     this.files.splice(0, this.files.length);
@@ -120,6 +131,10 @@ export class FileSelectionComponent implements OnInit {
     }
   }
 
+  /**
+   * Функция подсчета размера файла в мегабайтах или килобайтах
+   * @param size - размер файла в байтах
+   */
   calculate(size: number): string {
     if (size > this.differenceBetweenBytesAndMegabytes) {
       const sizeMB = size / this.differenceBetweenBytesAndMegabytes;
@@ -132,6 +147,10 @@ export class FileSelectionComponent implements OnInit {
     }
   }
 
+  /**
+   * Функция для отображения иконки файла в зависимости от его формата
+   * @param name - имя файла
+   */
   getIcon(name: string): string {
     const type = name.substr(name.length - 3, name.length);
     if (type === 'mp3') {
@@ -141,8 +160,13 @@ export class FileSelectionComponent implements OnInit {
     }
   }
 
+  /**
+   * Функция удаления одного файла
+   * @param i - индейкс файла
+   */
   onClear(i: number): void {
     this.indexDelete = i;
+    this.data.delete(this.files[i]);
     const index = this.files.indexOf(this.files[i], 0);
     if (index > -1) {
       this.files.splice(index, 1);
@@ -152,14 +176,19 @@ export class FileSelectionComponent implements OnInit {
     }
   }
 
+  /**
+   * Функция отправки на сервер аудио файла и загрузки с сервера текстового файла
+   * @param file - аудио файл
+   */
   onDownload(file: File): void {
     if (this.data.get(file) !== this.progressStatus.loaded) {
       this.data.set(file, this.progressStatus.processing);
 
       const dataBlob: Observable<Blob> = this.fileConverter.getTextFiles(file);
       dataBlob.subscribe( value => {
-        const blob = new Blob([value],
-          { type: 'text/plain'});
+        const blob = new Blob([value], { type: 'text/plain;charset=UTF-8'});
+
+        console.log(blob);
 
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
           window.navigator.msSaveOrOpenBlob(blob);
@@ -169,18 +198,21 @@ export class FileSelectionComponent implements OnInit {
         const data = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = data;
-        link.download = 'test.txt';
+        link.download = file.name + '.txt';
         link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
 
         setTimeout(() => {
           window.URL.revokeObjectURL(data);
           link.remove();
         }, 100);
+        this.data.set(file, this.progressStatus.loaded);
       });
-      this.data.set(file, this.progressStatus.loaded);
     }
   }
 
+  /**
+   * Функция запускает функцию загрузки файлов на сервер для всех файлов
+   */
   startConverter(): void {
     this.files.map(p => this.onDownload(p));
   }

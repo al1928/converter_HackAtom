@@ -1,24 +1,30 @@
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import logging
 
-from django.http import HttpResponseRedirect
 
 from .converterTextToSpeech import ConverterSpeechToText
-from .forms import UploadFileForm
 import os
 
 
 class Counter:
     mp3_count = 0
-    wav_count = 1
+    wav_count = 0
 
 
 @csrf_exempt
 def getTextFromMP3(request):
+    """
+    Принимает request с аудио файлом формата Mp3, меняет формат на .wav,
+    конвертирует в текст и возвращает response с конвертируемым текстом.
+
+    :param request: HttpRequest
+
+    :return: response: HttpResponse
+    """
     if request.method == 'POST':
         logger = logging.getLogger("django")
 
@@ -31,23 +37,23 @@ def getTextFromMP3(request):
             Counter.mp3_count += 1
             logger.info(Counter.mp3_count)
 
-        converter = ConverterSpeechToText()
-        path_mono_file = converter.stereo_to_mono(file_name)
-        logger.info(path_mono_file)
-        text = converter.recognition(path_mono_file)
-        b = bytes(text, 'utf-8')
+        b, path_mono_file = getText(file_name)
 
-        url = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.wav_count) + ".txt"
+        url = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.mp3_count) + ".txt"
 
-        with open(url, 'r+b') as txt:
-            txt.write(b)
-            response = HttpResponse(txt, content_type='text/plain;charset=UTF-8')
-
-        return response
+        return getResponse(url, b, file_name, path_mono_file)
 
 
 @csrf_exempt
 def getTextFromWAV(request):
+    """
+    Принимает request с аудио файлом формата Wav, меняет формат на .wav,
+    конвертирует в текст и возвращает response с конвертируемым текстом.
+
+    :param request: HttpRequest
+
+    :return: response: HttpResponse
+    """
     if request.method == 'POST':
         logger = logging.getLogger("django")
 
@@ -60,16 +66,46 @@ def getTextFromWAV(request):
             Counter.wav_count += 1
             logger.info(Counter.wav_count)
 
-        converter = ConverterSpeechToText()
-        path_mono_file = converter.stereo_to_mono(file_name)
-        logger.info(path_mono_file)
-        text = converter.recognition(path_mono_file)
-        b = bytes(text, 'utf-8')
+        b, path_mono_file = getText(file_name)
 
         url = os.getcwd() + "\\mozillaDeepSpeech\\audiocash\\" + str(Counter.wav_count) + ".txt"
 
-        with open(url, 'r+b') as txt:
-            txt.write(b)
-            response = HttpResponse(txt, content_type='text/plain;charset=UTF-8')
+        return getResponse(url, b, file_name, path_mono_file)
 
-        return response
+
+def getText(file_name):
+    """
+    Возвращает байтовый текст и путь до моно аудио файла.
+
+    :param file_name: str
+
+    :returns: bytes, path_mono_file: str
+    """
+    converter = ConverterSpeechToText()
+    path_mono_file = converter.stereo_to_mono(file_name)
+    text = converter.recognition(path_mono_file)
+    return bytes(text, 'utf-8'), path_mono_file
+
+
+def getResponse(url, b, file_name, path_mono_file):
+    """
+    Возвращает response с текстовым файлом и удаляет временные файлы.
+
+    :param path_mono_file: str
+    :param file_name: str
+    :param b: bytes
+    :param url: str
+
+    :return: response: HttpResponse
+    """
+    with open(url, 'w+b') as txt:
+        txt.write(b)
+
+    with open(url, 'r+b') as txt:
+        response = HttpResponse(txt, content_type='text/plain;charset=UTF-8')
+
+    os.remove(file_name)
+    os.remove(path_mono_file)
+    os.remove(url)
+
+    return response

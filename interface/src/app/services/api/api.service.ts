@@ -34,7 +34,7 @@ export class ApiService {
     return this.http.post(
       `${environment.apiUrl}${path}`,
       body,
-      {headers}
+      {headers, responseType: 'text'},
     ).pipe(catchError(ApiService.formatErrors));
   }
 

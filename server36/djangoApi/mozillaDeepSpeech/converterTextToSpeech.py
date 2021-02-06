@@ -8,18 +8,31 @@ from pydub import AudioSegment
 AudioSegment.converter = os.getcwd() + "\\ffmpeg.exe"
 AudioSegment.ffprobe = os.getcwd() + "\\ffprobe.exe"
 
-from rest_framework.views import APIView
 import logging
 import wave
 import librosa
 import numpy as np
 
 
-class ConverterSpeechToText(APIView):
-    path_model_pbmm = os.getcwd() + "\\mozillaDeepSpeech\\modelsConverter\\deepspeech-0.9.3-models.pbmm"
-    path_model_scorer = os.getcwd() + "\\mozillaDeepSpeech\\modelsConverter\\deepspeech-0.9.3-models.scorer"
+class ConverterSpeechToText:
+    """
+    Класс конвертации аудио в текст на основе библиотеки DeepSpeech.
+
+    """
+
+    # Пути до акустических моделей
+    path_model_pbmm_en = os.getcwd() + "\\mozillaDeepSpeech\\modelsConverter\\deepspeech-0.9.3-models.pbmm"
+    path_model_scorer_en = os.getcwd() + "\\mozillaDeepSpeech\\modelsConverter\\deepspeech-0.9.3-models.scorer"
 
     def stereo_to_mono(self, path_file: str, path_folder=None) -> str:
+        """
+        Принимает путь до аудио файла и возращает путь до сконвертируемого в формат wav моно файла.
+
+        :param path_folder: str
+        :param path_file:
+
+        :return: path_mono_file: str
+        """
         logger = logging.getLogger("django")
         logger.info(os.getcwd())
         if path_folder is None:
@@ -46,17 +59,27 @@ class ConverterSpeechToText(APIView):
             return "Ошибка при конвертации аудиофайла в Mono!"
 
     def recognition(self, file_name):
-        logger = logging.getLogger("django")
-        logger.info('баг?')
+        """
+        Принимает путь до аудио файла и возращает сконвертируемый в текст файл.
 
-        model = deepspeech.Model(self.path_model_pbmm)
-        model.enableExternalScorer(self.path_model_scorer)
+        :param file_name: str
+
+        :return:
+        """
+        # Создание объекта модели
+        model = deepspeech.Model(self.path_model_pbmm_en)
+        # Добавление языковой модели
+        model.enableExternalScorer(self.path_model_scorer_en)
+
         lm_alpha = 0.75
         lm_beta = 1.85
         model.setScorerAlphaBeta(lm_alpha, lm_beta)
         beam_width = 500
         model.setBeamWidth(beam_width)
 
+        # Проверка на частоту дискридитации
+        # Если частота меньше 16000, то
+        # Конвертация до частоты 16000
         w = wave.open(file_name, 'r')
         rate = w.getframerate()
         frames = w.getnframes()
@@ -65,9 +88,11 @@ class ConverterSpeechToText(APIView):
             y, s = librosa.load(file_name, sr=16000)
             soundfile.write(file_name, y, s)
             w = wave.open(file_name, 'r')
-            rate = w.getframerate()
             frames = w.getnframes()
             buffer = w.readframes(frames)
-            logger.info(rate)
+
+        # Преобразование в 16битный массив int
         data16 = np.frombuffer(buffer, dtype=np.int16)
+
+        # Преобразование в аудио в текст
         return model.stt(data16)

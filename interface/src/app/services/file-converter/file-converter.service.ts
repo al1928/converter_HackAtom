@@ -13,7 +13,7 @@ export class FileConverterService {
   getTextFiles(file: File): Observable<Blob> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
+    headers.append('Accept', 'text/plain');
     const type = file.name.substr(file.name.length - 3, file.name.length);
     const blob = new Blob([file], { type: 'audio/' + type});
     const formData = new FormData();
